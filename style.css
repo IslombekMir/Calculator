@@ -1,0 +1,28 @@
+#board{
+    box-sizing: border-box;
+    height: 30px;
+    border: solid 5px red;
+    display: flex;
+    justify-content: right;
+    width: 300px;
+}
+
+#board > span{
+    width: 40px;
+    border: green dotted 4px;
+}
+
+#keys{
+    box-sizing: border-box;
+    width: 300px;
+    border: solid blue 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 10px;
+}
+
+#keys button {
+    width: 60px;
+}
