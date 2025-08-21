@@ -89,7 +89,10 @@ keys.addEventListener('click', (e) => {
             board.textContent += ' - ';
             break;
         case 'equal':
-            board.textContent = callFunction(+firstNumber, +secondNumber);
+            let result = callFunction(+firstNumber, +secondNumber);
+            board.textContent = result;
+            firstNumber = result;
+            secondNumber = '';
             break;
         case '0':
             if(!isSecondNumber) firstNumber += '0'
