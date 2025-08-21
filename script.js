@@ -116,8 +116,7 @@ function eventFunction(e) {
         case 'equal':
         case '=':
         case 'Enter':
-            let result = callFunction(+firstNumber, +secondNumber);
-            board.textContent = result;
+            let result = callFunction(+firstNumber, +secondNumber);  
             firstNumber = result.toString();
             secondNumber = '';
             isSecondNumber = false;
@@ -128,7 +127,13 @@ function eventFunction(e) {
             else secondNumber += '0';
             break;
         case 'dot':
-            //
+        case '.':
+            if(!isSecondNumber) {
+                if(!firstNumber.split('').includes('.')) firstNumber += '.';
+            } else {
+                if(!secondNumber.split('').includes('.')) secondNumber += '.';
+            }
+            break;
         case 'divided-by':
         case '/':
             callFunction = divide;
