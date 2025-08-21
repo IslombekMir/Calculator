@@ -1,3 +1,7 @@
+body{
+    padding-bottom: 100px;
+}
+
 #calculator{
     box-sizing: border-box;
     background-color: rgb(169, 178, 169);
@@ -28,6 +32,17 @@
     border: green dotted 4px;
 }
 
+#delete-place{
+    box-sizing: border-box;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#delete-place > *{
+    width: 60px;
+}
+
 #keys{
     box-sizing: border-box;
     width: 300px;
@@ -45,6 +60,10 @@
     border-radius: 8px;
     border: none;
     padding: 10px;
+}
+
+button:hover{
+    opacity: 0.7;
 }
 
 .numbers{
