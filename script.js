@@ -21,6 +21,7 @@ let secondNumber = '';
 let isSecondNumber = false;
 let callFunction;
 
+//nodes
 const keys = document.querySelector('#keys');
 const board = document.querySelector('#board');
 
