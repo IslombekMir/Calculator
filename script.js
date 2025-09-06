@@ -22,6 +22,7 @@ let isSecondNumber = false;
 let callFunction;
 let operator = '';
 let checker = '';
+let calculationDone = false;
 
 
 //nodes
@@ -33,21 +34,38 @@ const body = document.querySelector('body');
 function eventFunction(e) {
 
     function setNumber(inputNumber) {
+        if(calculationDone) {
+            firstNumber = '';
+        }
         if(!isSecondNumber) firstNumber += inputNumber;
         else secondNumber += inputNumber;
+        calculationDone = false;
+    }
+
+    function clearUp() {
+        board.textContent = '';
+        firstNumber = '';
+        secondNumber = '';
+        isSecondNumber = false;
+        operator = '';           
+        calculationDone = false;
+    }
+
+    function performOperation(func, ope) {
+        callFunction = func;
+        isSecondNumber = true;
+        operator = ope;
+        calculationDone = false;
     }
 
     switch(checker) {
         case 'clear':
         case 'c':
-            board.textContent = '';
-            firstNumber = '';
-            secondNumber = '';
-            isSecondNumber = false;
-            operator = '';
+            clearUp();
             break;
         case 'backspace':
         case 'Backspace':
+            if(calculationDone) clearUp();
             if(!isSecondNumber) {
                 let first = '';
                 let text = '';
@@ -75,9 +93,7 @@ function eventFunction(e) {
             break;
         case 'plus':
         case '+':
-            callFunction = add;
-            isSecondNumber = true;
-            operator = ' + ';
+            performOperation(add, ' + ');
             break;
         case '4':
             setNumber('4');
@@ -90,9 +106,7 @@ function eventFunction(e) {
             break;
         case 'minus':
         case '-':
-            callFunction = subtract;
-            isSecondNumber = true;
-            operator = ' - ';
+            performOperation(subtract, ' - ');
             break;
         case '7':
             setNumber('7');
@@ -105,9 +119,7 @@ function eventFunction(e) {
             break;
         case 'times':
         case '*':
-            callFunction = multiply;
-            isSecondNumber = true;
-            operator = ' x ';
+            performOperation(multiply, ' x ');
             break;
         case 'equal':
         case '=':
@@ -117,6 +129,7 @@ function eventFunction(e) {
             secondNumber = '';
             isSecondNumber = false;
             operator = '';
+            calculationDone = true;
             break;
         case '0':
             setNumber('0');
@@ -131,9 +144,7 @@ function eventFunction(e) {
             break;
         case 'divided-by':
         case '/':
-            callFunction = divide;
-            isSecondNumber = true;
-            operator = ' / ';
+            performOperation(divide, ' / ');
             break;    
     }
     updateBoard();
@@ -153,5 +164,5 @@ keys.addEventListener('click', (e) => {
 body.addEventListener('keydown', (e) => {
     checker = e.key.toString();
     eventFunction();
-    console.log(e.key);
+    e.target.blur();
 })
