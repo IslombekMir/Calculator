@@ -31,6 +31,12 @@ const equal = document.querySelector('#equal');
 const body = document.querySelector('body');
 
 function eventFunction(e) {
+
+    function setNumber(inputNumber) {
+        if(!isSecondNumber) firstNumber += inputNumber;
+        else secondNumber += inputNumber;
+    }
+
     switch(checker) {
         case 'clear':
         case 'c':
@@ -38,6 +44,7 @@ function eventFunction(e) {
             firstNumber = '';
             secondNumber = '';
             isSecondNumber = false;
+            operator = '';
             break;
         case 'backspace':
         case 'Backspace':
@@ -58,16 +65,13 @@ function eventFunction(e) {
             }
             break;
         case '1':
-            if(!isSecondNumber) firstNumber += '1'
-            else secondNumber += '1';
+            setNumber('1');
             break;
         case '2':
-            if(!isSecondNumber) firstNumber += '2';
-            else secondNumber += '2';
+            setNumber('2');
             break;
         case '3':
-            if(!isSecondNumber) firstNumber += '3';
-            else secondNumber += '3';
+            setNumber('3');
             break;
         case 'plus':
         case '+':
@@ -76,18 +80,13 @@ function eventFunction(e) {
             operator = ' + ';
             break;
         case '4':
-            if(!isSecondNumber) firstNumber += '4';
-            else secondNumber += '4';
+            setNumber('4');
             break;
         case '5':
-            if(!isSecondNumber) firstNumber += '5'
-            else secondNumber += '5';
-            board.textContent += '5';
+            setNumber('5');
             break;
         case '6':
-            if(!isSecondNumber) firstNumber += '6';
-            else secondNumber += '6';
-            board.textContent += '6';
+            setNumber('6');
             break;
         case 'minus':
         case '-':
@@ -96,22 +95,19 @@ function eventFunction(e) {
             operator = ' - ';
             break;
         case '7':
-            if(!isSecondNumber) firstNumber += '7';
-            else secondNumber += '7';
+            setNumber('7');
             break;
         case '8':
-            if(!isSecondNumber) firstNumber += '8';
-            else secondNumber += '8';
+            setNumber('8');
             break;
         case '9':
-            if(!isSecondNumber) firstNumber += '9';
-            else secondNumber += '9';
+            setNumber('9');
             break;
         case 'times':
         case '*':
             callFunction = multiply;
             isSecondNumber = true;
-            operator = ' * ';
+            operator = ' x ';
             break;
         case 'equal':
         case '=':
@@ -123,8 +119,7 @@ function eventFunction(e) {
             operator = '';
             break;
         case '0':
-            if(!isSecondNumber) firstNumber += '0'
-            else secondNumber += '0';
+            setNumber('0');
             break;
         case 'dot':
         case '.':
@@ -148,7 +143,7 @@ function updateBoard() {
     board.textContent = firstNumber + operator + secondNumber;
 }
 
-updateBoard();
+
 
 keys.addEventListener('click', (e) => {
     checker = e.target.id;
